@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -113,6 +114,21 @@ public class MainWindow extends JFrame implements KeyListener, ActionListener, T
 				port.subscribe(args[1]);
 				println("Subscribed to "+args[1]);
 				break;
+			case "l":
+			case "a":
+			case "al":
+			case "addlistener":
+			case "addListener":
+				port.addTopicListener(this);
+				println("Listener added");
+				break;
+			case "r":
+			case "rl":
+			case "removelistener":
+			case "removeListener":
+				port.removeTopicListener(this);
+				println("Listener removed");
+				break;
 			case "u":
 			case "us":
 			case "un":
@@ -128,7 +144,15 @@ public class MainWindow extends JFrame implements KeyListener, ActionListener, T
 			case "publ":
 			case "publish":
 				port.publish(new MessagePublish(args[1], args[2]));
-				println("Published: "+args[1]+">>"+args[2]);
+				println("Published> Topic: "+args[1]+" || Data: "+args[2]);
+				break;
+			case "g":
+			case "gls":
+			case "get":
+			case "getlastsample":
+			case "getLastSample":
+				MessagePublication message = port.getLastSample(args[1]);
+				println("Last sample of "+args[1]+"> Timestamp: "+message.getTimestamp()+" || Sender: "+message.getSender()+" || Topic: "+message.getTopic()+" || Data: "+message.getDataObject());
 				break;
 			case "PSPortTCP":
 				port = PSPortFactory.getPort(txtEnviar.getText());
@@ -162,7 +186,7 @@ public class MainWindow extends JFrame implements KeyListener, ActionListener, T
 
 	public void publicationReceived(MessagePublication message) {
 		try {
-			println("Received: "+message.getTopic()+">>"+message.getDataObject());
+			println("Received> Timestamp: "+message.getTimestamp()+" || Sender: "+message.getSender()+" || Topic: "+message.getTopic()+" || Data: "+message.getDataObject());
 		} catch (Exception e) {
 			println(e.getClass().getName()+": "+e.getMessage());
 		}
