@@ -1,0 +1,28 @@
+Esta aplicación de prueba requiere que el broker esté en marcha en una IP conocida.
+
+El input de la aplicación se manda escribiendo en el cuadro de texto de abajo y pulsando
+return o el botón 'Send'.
+
+En primer lugar, habrá que conectarse al broker escribiendo "PSPortTCP -a <IP> -p <puerto>"
+donde <IP> será la dirección donde esté el broker y <puerto> el puerto por el que esté
+escuchando, que por defecto es 5434 (si se omite -a <IP> se conecta a 127.0.0.1 por defecto,
+y si se omite -p <puerto> se usa el puerto 5434).
+
+Al iniciar la aplicación de prueba, esta intentará "PSPortTCP", que es equivalente a
+"PSPortTCP -a 127.0.0.1 -p 5434". Se puede intentar conectarse a otro broker en cualquier momento.
+
+Para recibir mensajes: "subscribe <tópico>" o "s <tópico>"
+
+Para dejar de recibir mensajes: "unsubscribe <tópico>" o "u <tópico>"
+
+Para publicar mensajes: "publish <tópico> <mensaje>" o "p <tópico> <mensaje>"
+
+Para obtener último mensaje de un tópico: "getLastSample <tópico>" o "g <tópico>"
+
+Para que los mensajes recibidos salgan automáticamente "addListener" o "a"
+
+Para que los mensajes recibidos dejen de salir automáticamente "removeListener" o "r"
+
+Para borrar el buffer del output: "clear" o "c"
+
+Para cerrar la aplicación: "exit" o "e"

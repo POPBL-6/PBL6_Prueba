@@ -48,8 +48,6 @@ public class MainWindow extends JFrame implements KeyListener, ActionListener, T
 		
 		JPanel panelSur = new JPanel(new BorderLayout());
 		txtEnviar = new JTextField();
-		txtEnviar.setForeground(Color.WHITE);
-		txtEnviar.setBackground(Color.DARK_GRAY);
 		btnEnviar = new JButton("Send");
 		panelSur.add(txtEnviar,BorderLayout.CENTER);
 		panelSur.add(btnEnviar,BorderLayout.EAST);
@@ -162,6 +160,7 @@ public class MainWindow extends JFrame implements KeyListener, ActionListener, T
 			case "clear":
 				clear();
 				break;
+			case "e":
 			case "end":
 			case "exit":
 			case "bye":
