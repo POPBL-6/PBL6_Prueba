@@ -1,5 +1,6 @@
 # Created by https://www.gitignore.io/api/eclipse,java,intellij,gradle,maven
 ### Eclipse ###
+libs/*
 .metadata bin/ tmp/ *.tmp *.bak *.swp *~.nib local.properties .settings/ .loadpath .recommenders
 # Eclipse Core
 .project
