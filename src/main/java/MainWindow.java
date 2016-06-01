@@ -67,7 +67,7 @@ public class MainWindow extends JFrame implements KeyListener, ActionListener, T
 		}); 
 		
 		try {
-			port = PSPortFactory.getPort("PSPortSSL");
+			port = PSPortFactory.getPort("PSPortSSL -p 443");
 			port.addTopicListener(this);
 			println("Connected with PSPortSSL");
 		} catch (Throwable e) {
