@@ -67,7 +67,7 @@ public class MainWindow extends JFrame implements KeyListener, ActionListener, T
 		}); 
 		
 		try {
-			port = PSPortFactory.getPort("PSPortSSL -p 443");
+			port = PSPortFactory.getPort("PSPortSSL -p 5434 -k client1.jks -t client1.jks -kp snowflake");
 			port.addTopicListener(this);
 			println("Connected with PSPortSSL");
 		} catch (Throwable e) {
@@ -150,11 +150,17 @@ public class MainWindow extends JFrame implements KeyListener, ActionListener, T
 				println("Last sample of "+args[1]+"> Timestamp: "+message.getTimestamp()+" || Sender: "+message.getSender()+" || Topic: "+message.getTopic()+" || Data: "+message.getDataObject());
 				break;
 			case "PSPortTCP":
+				try {
+					port.disconnect();
+				} catch (Throwable e) {}
 				port = PSPortFactory.getPort(txtEnviar.getText());
 				port.addTopicListener(this);
 				println("Connected with "+txtEnviar.getText());
 				break;
 			case "PSPortSSL":
+				try {
+					port.disconnect();
+				} catch (Throwable e) {}
 				port = PSPortFactory.getPort(txtEnviar.getText());
 				port.addTopicListener(this);
 				println("Connected with "+txtEnviar.getText());
