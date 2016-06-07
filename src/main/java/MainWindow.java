@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -42,6 +43,7 @@ public class MainWindow extends JFrame implements KeyListener, ActionListener, T
 		output.setEditable(false);
 		output.setForeground(Color.WHITE);
 		output.setBackground(Color.BLACK);
+		output.setFont(output.getFont().deriveFont(16f));
 		JScrollPane scroll = new JScrollPane(output);
 		add(scroll);
 		
@@ -65,7 +67,6 @@ public class MainWindow extends JFrame implements KeyListener, ActionListener, T
 		    	txtEnviar.requestFocus();
 		    }
 		}); 
-		
 		try {
 			port = PSPortFactory.getPort("PSPortSSL -p 5434 -k client1.jks -t client1.jks -kp snowflake");
 			port.addTopicListener(this);
@@ -147,7 +148,7 @@ public class MainWindow extends JFrame implements KeyListener, ActionListener, T
 			case "getlastsample":
 			case "getLastSample":
 				MessagePublication message = port.getLastSample(args[1]);
-				println("Last sample of "+args[1]+"> Timestamp: "+message.getTimestamp()+" || Sender: "+message.getSender()+" || Topic: "+message.getTopic()+" || Data: "+message.getDataObject());
+				println("Last sample of "+args[1]+"> Timestamp: "+new Date(message.getTimestamp())+" || Sender: "+message.getSender()+" || Topic: "+message.getTopic()+" || Data: "+message.getDataObject());
 				break;
 			case "PSPortTCP":
 				try {
@@ -193,7 +194,7 @@ public class MainWindow extends JFrame implements KeyListener, ActionListener, T
 
 	public void publicationReceived(MessagePublication message) {
 		try {
-			println("Received> Timestamp: "+message.getTimestamp()+" || Sender: "+message.getSender()+" || Topic: "+message.getTopic()+" || Data: "+message.getDataObject());
+			println("Received> Timestamp: "+new Date(message.getTimestamp())+" || Sender: "+message.getSender()+" || Topic: "+message.getTopic()+" || Data: "+message.getDataObject());
 		} catch (Exception e) {
 			println(e.getClass().getName()+": "+e.getMessage());
 		}
