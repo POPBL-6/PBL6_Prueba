@@ -39,12 +39,12 @@ Clear screen: `clear` or `c`
 Terminate application: `exit` or `e`
 
 ## Example execution
--Run the application (instance 1), should display Connected with `PSPortSSL` if connection is succesful.
--Run the application (instance 2), should display Connected with `PSPortSSL` if connection is succesful.
--(Optional)`PSPortSSL -p 5434 -k client2.jks -t client2.jks -kp snowflake` on instance 2 to use a different certificate (this disconnects the previous connection)
--`subscribe message` on instance 1
--`publish message hello` on instance 2
--Instance 1 should display: `Received> Timestamp: Thu Jun 09 10:03:22 CEST 2016 || Sender: CN=Client2 || Topic: message || Data: hello`
+* Run the application (instance 1), should display Connected with `PSPortSSL` if connection is succesful.
+* Run the application (instance 2), should display Connected with `PSPortSSL` if connection is succesful.
+* (Optional)`PSPortSSL -p 5434 -k client2.jks -t client2.jks -kp snowflake` on instance 2 to use a different certificate (this disconnects the previous connection)
+* `subscribe message` on instance 1
+* `publish message hello` on instance 2
+* Instance 1 should display: `Received> Timestamp: Thu Jun 09 10:03:22 CEST 2016 || Sender: CN=Client2 || Topic: message || Data: hello`
 
 ## How to run it?
 ### If you have Gradle installed
